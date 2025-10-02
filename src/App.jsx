@@ -7,6 +7,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+   return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/users/:id" element={<UserDetails />} />
+      </Routes>
+    </Router>
+  );
+
 
 
   return (
