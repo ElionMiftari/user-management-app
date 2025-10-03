@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { setUsers, deleteUser } from "./usersSlice";
+import { setUsers, deleteUser } from "../redux/usersSlice";
 import UserCard from "./UserCard";
 
 export default function UserList() {
@@ -14,7 +14,7 @@ export default function UserList() {
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(res => res.json())
-            .then(data => setUsers(data));
+            .then(data => dispatch(setUsers(data))); 
     }, [dispatch]);
 
    const filteredUsers = users.filter(
@@ -31,7 +31,7 @@ export default function UserList() {
     });
 
     return (
-            <div className="container mt-3">
+    <div className="container mt-3">
       <input
         type="text"
         className="form-control mb-3"

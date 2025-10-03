@@ -1,18 +1,20 @@
 import UserList from '../components/UserList';
 import UserForm from '../components/UserForm';
 import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/usersSlice";
 
 export default function Home() {
-    const [users, setUsers] = useState([]);
+   const dispatch = useDispatch();
 
-    const addUser = (user) => {
-        setUsers(prev => [user, ...prev]);
-    };
+  const addUserHandler = (user) => {
+    dispatch(addUser(user));
+  };
 
     return (
         <div>
-            <UserForm addUser={addUser} />
-            <UserList users={users} setUsers={setUsers} />
+            <UserForm addUser={addUserHandler} />
+            <UserList />
         </div>
     );
 }
