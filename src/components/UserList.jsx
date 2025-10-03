@@ -11,27 +11,30 @@ export default function UserList() {
             .then(data => setUsers(data));
     }, []);
 
-    const filteredUsers = users.filter(
-        u => u.name.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase())
-    );
+   const filteredUsers = users.filter(
+    (u) =>
+      u.name.toLowerCase().includes(search.toLowerCase()) ||
+      u.email.toLowerCase().includes(search.toLowerCase())
+  );
 
     return (
-        <div>
-            <input 
-                type="text" 
-                placeholder="Search by name or email" 
-                value={search} 
-                onChange={e => setSearch(e.target.value)}
-            />
-            <ul>
-                {filteredUsers.map(user => (
-                    <li key={user.id}>
-                        <Link to={`/users/${user.id}`}>
-                            {user.name} - {user.email} - {user.company.name}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
+            <div className="container mt-3">
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search by name or email"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <div className="row">
+        {filteredUsers.map((user) => (
+          <div key={user.id} className="col-md-4">
+            <UserCard user={user} />
+          </div>
+        ))}
+      </div>
+    </div>
+
     );
 }
