@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const UserCard = ({ user }) => {
+export default function UserCard({ user, onDelete }) {
   return (
     <Card className="mb-3 shadow-sm">
       <Card.Body>
@@ -14,9 +14,10 @@ const UserCard = ({ user }) => {
         <Link to={`/users/${user.id}`}>
           <Button variant="primary">View Details</Button>
         </Link>
+        <Button variant="danger" onClick={onDelete}>
+            Delete
+        </Button>
       </Card.Body>
     </Card>
   );
-};
-
-export default UserCard;
+}
